@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Demo: Button</title>
+
+		<link rel="stylesheet" href="../node_modules/lexicon-ux/build/css/atlas-font-awesome.css">
+		<script src="../build/globals/button.js"></script>
+
+		<style>
+			body {
+				padding: 10px;
+			}
+
+			.btn {
+				margin-right: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Lexicon Button Component</h1>
+
+		<h2>Default</h2>
+		<div id="default"></div>
+
+		<h2>Button Levels</h2>
+		<div id="levels"></div>
+
+		<h2>Button Sizes</h2>
+		<div id="sizes"></div>
+
+		<h2>Button Icons</h2>
+		<div id="icons"></div>
+
+		<script type="text/javascript">
+			var spritemap = '../node_modules/lexicon-ux/build/images/icons/icons.svg';
+			var levels = ['default', 'primary', 'info', 'success', 'warning', 'danger', 'link'];
+
+			// Default
+			new metal.LexiconButton({ label: 'Button' }, '#default');
+
+			// Levels
+			levels.forEach(function(level, index) {
+				new metal.LexiconButton({
+					value: 'Button ' + index,
+					label: level,
+					level: level,
+					spritemap: spritemap
+				}, '#levels');
+			});
+
+			// Sizes
+			new metal.LexiconButton({
+				label: 'xs',
+				size: 'xs',
+				spritemap: spritemap
+			}, '#sizes');
+
+			new metal.LexiconButton({
+				label: 'sm',
+				size: 'sm',
+				spritemap: spritemap
+			}, '#sizes');
+
+			new metal.LexiconButton({
+				label: 'lg',
+				size: 'lg',
+				spritemap: spritemap
+			}, '#sizes');
+
+			// Icons
+			new metal.LexiconButton({
+				cssClass: 'btn-action',
+				icon: 'plus',
+				level: 'primary',
+				spritemap: spritemap
+			}, '#icons');
+
+			new metal.LexiconButton({
+				icon: 'plus',
+				spritemap: spritemap
+			}, '#icons');
+		</script>
+	</body>
+</html>

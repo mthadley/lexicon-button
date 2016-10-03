@@ -1,0 +1,71 @@
+{namespace LexiconButton}
+
+/**
+ * This renders an icon element based on the lexicon icon definition
+ * found at http://liferay.github.io/lexicon/content/buttons/
+ *
+ * @param? block
+ * @param? cssClass
+ * @param? href
+ * @param? level
+ * @param? size
+ * @param? value
+ */
+{template .render}
+	{let $buttonCssClass kind="text"}
+		btn btn-{$level ?: 'default'}{$block ? ' btn-block' : ''}{$size ? ' btn-' + $size : ''}{$cssClass ? ' ' + $cssClass : ''}
+	{/let}
+
+	{if isNonnull($value)}
+		{call .input data="all"}
+			{param cssClass: $buttonCssClass /}
+		{/call}
+	{elseif isNonnull($href)}
+		{call .link data="all"}
+			{param cssClass: $buttonCssClass /}
+		{/call}
+	{else}
+		{call .button data="all"}
+			{param cssClass: $buttonCssClass /}
+		{/call}
+	{/if}
+{/template}
+
+/**
+ * @param? cssClass
+ * @param? icon
+ * @param? label
+ */
+{template .button}
+	<button class="{$cssClass}" type="button">
+		{if isNonnull($icon)}
+			<span class="icon-monospaced">
+				{call LexiconIcon.render data="all"}
+					{param cssClass: '' /}
+					{param symbol: $icon /}
+				{/call}
+			</span>
+		{/if}
+
+		{if isNonnull($label)}
+			{$label}
+		{/if}
+	</button>
+{/template}
+
+/**
+ * @param cssClass
+ * @param value
+ */
+{template .input}
+	<input class="{$cssClass}" type="submit" value="{$value}" />
+{/template}
+
+/**
+ * @param cssClass
+ * @param href
+ * @param label
+ */
+{template .link}
+	<a class="{$cssClass}" href="{$href}">{$label}</a>
+{/template}
